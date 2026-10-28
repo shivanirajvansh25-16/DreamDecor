@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamDecor | Payment</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8eee9, #f4e3dc);
+            color: #392b29;
+        }
+
+        header {
+            background: #402b2a;
+            color: white;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 25px;
+            letter-spacing: 1px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1000px, 92%);
+            margin: 45px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 10px 35px #402b2a12;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .subtitle {
+            color: #82716d;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .amount-box {
+            background: #faf3ef;
+            border: 1px solid #ead7ce;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 24px;
+        }
+
+        .amount-box span {
+            color: #806c66;
+            font-size: 14px;
+        }
+
+        .amount {
+            display: block;
+            color: #8b5147;
+            font-size: 34px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 0;
+            border-bottom: 1px solid #eee5e1;
+            overflow-wrap: anywhere;
+        }
+
+        .detail span:first-child {
+            color: #806c66;
+        }
+
+        .detail span:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin: 17px 0 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d9c9c3;
+            border-radius: 8px;
+            background: white;
+            color: #392b29;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: 2px solid #b57a6b;
+            border-color: #b57a6b;
+        }
+
+        .payment-option {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            border: 1px solid #e5d8d2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        .payment-option:has(input:checked) {
+            border-color: #995d50;
+            background: #fcf5f1;
+        }
+
+        .payment-option input {
+            width: auto;
+            margin-top: 3px;
+            accent-color: #995d50;
+        }
+
+        .payment-option strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .payment-option small {
+            color: #82716d;
+            line-height: 1.5;
+        }
+
+        .pay-button {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            background: #8b5147;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 24px;
+        }
+
+        .pay-button:hover {
+            background: #704038;
+        }
+
+        .pay-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 15px;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+        }
+
+        .secure-note {
+            text-align: center;
+            font-size: 12px;
+            color: #82716d;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                grid-template-columns: 1fr;
+                margin: 25px auto;
+            }
+
+            .card {
+                padding: 23px;
+            }
+
+            header {
+                padding: 20px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>DreamDecor</h1>
+        <a href="/index.html">Home</a>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Order Summary</h2>
+            <p class="subtitle">
+                Review your selected interior design before continuing.
+            </p>
+
+            <div class="amount-box">
+                <span>Total Booking Amount</span>
+                <strong class="amount" id="amount">₹0</strong>
+            </div>
+
+            <div class="detail">
+                <span>Booking ID</span>
+                <span id="bookingId">—</span>
+            </div>
+
+            <div class="detail">
+                <span>Selected Design</span>
+                <span id="designName">—</span>
+            </div>
+
+            <div class="detail">
+                <span>Payment Status</span>
+                <span>Pending</span>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Choose Payment</h2>
+            <p class="subtitle">
+                Select your preferred payment option to save your payment
+                details and continue.
+            </p>
+
+            <form id="paymentForm">
+                <label for="email">Registered Email Address</label>
+                <input type="email" id="email" placeholder="Enter your booking email" required>
+
+                <label>Payment Method</label>
+
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="UPI (demo)" required>
+                    <span>
+                        <strong>UPI Payment</strong>
+                        <small>Demo option — no actual money is transferred.</small>
+                    </span>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="Card (demo)" required>
+                    <span>
+                        <strong>Credit / Debit Card</strong>
+                        <small>Demo option — no card details are collected.</small>
+                    </span>
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="paymentMethod" value="Pay later" required>
+                    <span>
+                        <strong>Pay Later</strong>
+                        <small>Save your selection and discuss payment with the designer.</small>
+                    </span>
+                </label>
+
+                <button class="pay-button" id="payButton" type="submit">
+                    Confirm Payment Selection
+                </button>
+
+                <p id="message" role="status"></p>
+                <p class="secure-note">
+                    Demo payment only. This page does not charge money.
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const storedData = localStorage.getItem("dreamdecorPendingPayment");
+
+        let booking = {};
+
+        try {
+            booking = storedData ? JSON.parse(storedData) : {};
+        } catch (error) {
+            booking = {};
+        }
+
+        const bookingId = Number(params.get("order") || booking.bookingId || 0);
+        const emailInput = document.getElementById("email");
+        const message = document.getElementById("message");
+        const payButton = document.getElementById("payButton");
+
+        document.getElementById("bookingId").textContent =
+            bookingId > 0 ? bookingId : "Missing";
+
+        document.getElementById("designName").textContent =
+            booking.design || "Selected design";
+
+        const price = Number(booking.price || 0);
+
+        document.getElementById("amount").textContent =
+            price.toLocaleString("en-IN", {
+                style: "currency",
+                currency: "INR",
+                maximumFractionDigits: 0
+            });
+
+        emailInput.value = booking.email || "";
+
+        if (!bookingId || !Number.isInteger(bookingId)) {
+            message.textContent =
+                "Booking ID is missing. Please submit your booking again.";
+            message.style.color = "#b42318";
+            payButton.disabled = true;
+        }
+
+        document.getElementById("paymentForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const email = emailInput.value.trim();
+            const selected = document.querySelector(
+                'input[name="paymentMethod"]:checked'
+            );
+
+            if (!bookingId || !selected) {
+                message.textContent = "Please select a valid booking and payment method.";
+                message.style.color = "#b42318";
+                return;
+            }
+
+            payButton.disabled = true;
+            payButton.textContent = "Saving...";
+            message.textContent = "";
+
+            try {
+                const response = await fetch("/api/payment", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        bookingId: bookingId,
+                        email: email,
+                        paymentMethod: selected.value
+                    })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.error || "Could not save payment.");
+                }
+
+                window.location.href =
+                    "/success.html?order=" +
+                    encodeURIComponent(result.bookingId) +
+                    "&payment=" +
+                    encodeURIComponent(result.paymentId);
+
+            } catch (error) {
+                message.textContent = error.message;
+                message.style.color = "#b42318";
+                payButton.disabled = false;
+                payButton.textContent = "Confirm Payment Selection";
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FAQs | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-header {
+            max-width: 760px;
+            margin-bottom: 32px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .faq-header h1,
+        .faq-item summary {
+            font-family: Georgia, serif;
+        }
+
+        .faq-header p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .faq-list {
+            max-width: 850px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .faq-item {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px 20px;
+        }
+
+        .faq-item summary {
+            cursor: pointer;
+            font-size: 1.08rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .faq-item p {
+            color: var(--muted);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .faq-help {
+            margin-top: 35px;
+            padding: 25px;
+            background: #f1ebe4;
+            border-radius: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a class="brand" href="index.html">DreamDecor</a>
+        <div class="navlinks">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="about-us.html">About Us</a>
+            <a href="contact-us.html">Contact Us</a>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <header class="faq-header">
+            <span class="eyebrow">We're here to help</span>
+            <h1>Frequently Asked Questions</h1>
+            <p>
+                Find answers to common questions about exploring designs,
+                submitting a booking request, and getting help with your project.
+            </p>
+        </header>
+
+        <section class="faq-list">
+            <details class="faq-item">
+                <summary>What is DreamDecor?</summary>
+                <p>
+                    DreamDecor is an interior design inspiration platform where
+                    you can explore room styles, view before-and-after concepts,
+                    preview ideas, and submit design booking requests.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>How do I book an interior design?</summary>
+                <p>
+                    Open Explore, select a design, and choose the booking option.
+                    Complete the form with your contact details, room type,
+                    preferred consultation date, address, budget, and requirements.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Does submitting a booking mean my appointment is confirmed?</summary>
+                <p>
+                    A booking request records your project details. Unless your
+                    confirmation page explicitly states that the appointment is
+                    confirmed, treat it as a request awaiting follow-up.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>How much will my interior design project cost?</summary>
+                <p>
+                    Prices shown for designs are estimates. Your final cost may
+                    depend on the room, measurements, materials, requirements,
+                    and scope of the project.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I choose a preferred consultation date?</summary>
+                <p>
+                    Yes. You can enter your preferred date in the booking form.
+                    The date is a preference and may require confirmation.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Where can I see my booking requests?</summary>
+                <p>
+                    Open My Profile to view your saved demo booking requests.
+                    Database-backed order history will appear there when the
+                    backend order endpoint is configured for your account.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>What if I need to change my booking details?</summary>
+                <p>
+                    Contact the DreamDecor support team with your name, email,
+                    booking reference if available, and the changes you need.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>How do I report a problem or suggest an improvement?</summary>
+                <p>
+                    Visit Contact Us, enter your name, email, mobile number,
+                    select a help category, and describe your issue or suggestion.
+                </p>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I use the website without logging in?</summary>
+                <p>
+                    You can browse the public design pages. Features that depend
+                    on your account or saved data may require you to log in.
+                </p>
+            </details>
+        </section>
+
+        <section class="faq-help">
+            <h2>Still need help?</h2>
+            <p>
+                Send us your question or suggestion and our team can review it.
+            </p>
+            <a class="btn" href="contact-us.html">Contact Customer Support</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-brand">DreamDecor</div>
+                <p>Helping you imagine a space that feels like home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Explore Designs</a></li>
+                    <li><a href="before-after.html">Before &amp; After</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="booking.html">Book a Design</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="year"></span> DreamDecor. All rights reserved.</p>
+            <a href="contact-us.html">Customer Help</a>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll(".year").forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+
+</html>

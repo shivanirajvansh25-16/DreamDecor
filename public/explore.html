@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Explore | DreamDecor</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-head {
+      margin-bottom: 28px
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .78rem;
+      color: var(--accent);
+      font-weight: 700
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 36px;
+      align-items: start
+    }
+
+    .feature-list {
+      padding-left: 20px;
+      line-height: 1.9
+    }
+
+    .wide-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 18px;
+      max-height: 560px
+    }
+
+    .helper {
+      font-size: .9rem;
+      line-height: 1.6;
+      color: var(--muted)
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px
+    }
+
+    .notice {
+      padding: 14px 16px;
+      background: #f1ebe4;
+      border-radius: 12px;
+      margin: 16px 0
+    }
+
+    .form-card h1 {
+      font-family: Georgia, serif
+    }
+
+    .form-card form button {
+      margin-top: 20px
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px
+    }
+
+    .form-card small {
+      color: var(--muted)
+    }
+
+    .success-mark {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #e6efe4;
+      color: #2d6337;
+      font-size: 2rem
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px
+    }
+
+    .compare figure {
+      margin: 0;
+      background: var(--paper);
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 18px
+    }
+
+    .compare img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 12px
+    }
+
+    .compare figcaption {
+      padding: 12px 4px 4px;
+      font-weight: 700
+    }
+
+    .design-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 14px 0
+    }
+
+    @media(max-width:750px) {
+
+      .split,
+      .compare,
+      .form-row {
+        grid-template-columns: 1fr
+      }
+
+      .compare img {
+        height: 240px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="logo-container">
+      <img src="logo.png" alt="Dream Decor Logo">
+      <a class="brand" href="index.html">DreamDecor</a>
+      <div class="navlinks"><a href="explore.html">Explore</a><a href="before-after.html">Before / After</a><a
+          href="ai.html">AI Preview</a><a href="profile.html">Profile</a><a class="btn alt" href="login.html">Login</a>
+      </div>
+    </div>
+  </nav>
+  <main class="section container">
+    <div class="page-head"><span class="eyebrow">Find your style</span>
+      <h1>Explore interiors</h1>
+      <p class="muted">Browse room concepts, then open a design to see its full story, materials, budget and next steps.
+      </p>
+    </div>
+    <div class="grid">
+
+      <!-- =====================================
+         FILTERS
+    ====================================== -->
+      <div>
+        <div class="category-filters">
+
+          <button class="filter-button active" data-category="all">
+
+            All Designs
+
+          </button>
+
+
+          <button class="filter-button" data-category="living">
+
+            Living Room
+
+          </button>
+
+
+          <button class="filter-button" data-category="bedroom">
+
+            Bedroom
+
+          </button>
+
+
+          <button class="filter-button" data-category="kitchen">
+
+            Kitchen
+
+          </button>
+
+
+          <button class="filter-button" data-category="office">
+
+            Home Office
+
+          </button>
+
+
+          <button class="filter-button" data-category="balcony">
+
+            Balcony
+
+          </button>
+
+
+          <button class="filter-button" data-category="bathroom">
+
+            Bathroom
+
+          </button>
+
+          <button class="filter-button" data-category="walk-in-closet">
+
+            Walk-in Closet
+
+          </button>
+
+        </div><br>
+
+        <div class="design-grid" id="designGrid">
+
+
+          <article class="design-card" data-category="living">
+
+            <a href="details.html?design=modern-living" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/modernliving3.jpg" alt="Modern living room">
+
+                <span class="design-category">Living Room · Modern</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Modern Living</h3>
+
+              <p>Warm neutral tones with contemporary furniture.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹45,000</span>
+
+                <a class="view-design" href="details.html?design=modern-living">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+          <!--  -->
+          <article class="design-card" data-category="bedroom">
+
+            <a href="details.html?design=serene-bedroom" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/minibed3.jpg" alt="Serene Bedroom">
+
+                <span class="design-category">Bedroom · Serene</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Serene Bedroom</h3>
+
+              <p>Soft textures and calming neutral colors.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹35,000</span>
+
+                <a class="view-design" href="details.html?design=serene-bedroom">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+          <!--  -->
+          <article class="design-card" data-category="kitchen">
+
+            <a href="details.html?design=minimal-kitchen" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/miniki3.jpg" alt="Minimal kitchen">
+
+                <span class="design-category">Kitchen · Minimalistic</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Minimal Kitchen</h3>
+
+              <p>Clean cabinet design with modern appliances.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹55,000</span>
+
+                <a class="view-design" href="details.html?design=minimal-kitchen">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+          <!--  -->
+          <article class="design-card" data-category="office">
+
+            <a href="details.html?design=creative-office" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/luxho2.jpg" alt="Modern living room">
+
+                <span class="design-category">Creative Office · Luxury</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Creative Office</h3>
+
+              <p>A space designed for inspiration and productivity.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹30,000</span>
+
+                <a class="view-design" href="details.html?design=creative-office">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+          <!--  -->
+          <article class="design-card" data-category="balcony">
+
+            <a href="details.html?design=modern-balcony" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/modbal1.jpg" alt="Modern balcony">
+
+                <span class="design-category">Balcony · Modern</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Modern Balcony</h3>
+
+              <p>Well-designed space for relaxation and entertainment.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹40,000</span>
+
+                <a class="view-design" href="details.html?design=modern-balcony">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+          <!--  -->
+          <article class="design-card" data-category="walk-in-closet">
+
+            <a href="details.html?design=walk-in-closet" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/modwic2.jpg" alt="Walk-In Closet">
+
+                <span class="design-category">Walk-In Closet · Modern Luxury</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Walk-In Closet</h3>
+
+              <p>Spacious and organized storage solution.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹35,000</span>
+
+                <a class="view-design" href="details.html?design=walk-in-closet">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+          <!--  -->
+          <article class="design-card" data-category="traditional-walk-in-closet">
+
+            <a href="details.html?design=traditional-walk-in-closet" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/tradwic2.jpg" alt="Traditional Walk-In Closet">
+
+                <span class="design-category">Walk-In Closet · Classic Traditional</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Traditional Walk-In Closet</h3>
+
+              <p>Spacious and organized storage solution.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹45,000</span>
+
+                <a class="view-design" href="details.html?design=traditional-walk-in-closet">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+          <article class="design-card" data-category="kitchen">
+            <a href="details.html?design=modern-kitchen" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/modkit4.jpg" alt="Modern kitchen interior design" loading="lazy">
+                <span class="design-category">Kitchen · Modern</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Modern Smart Kitchen</h3>
+              <p>A sleek kitchen with clean cabinetry, durable counters, efficient work zones and integrated modern
+                appliances.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹65,000</span>
+                <a class="view-design" href="details.html?design=modern-kitchen">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="kitchen">
+            <a href="details.html?design=traditional-kitchen" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/tradkit3.jpg" alt="Traditional kitchen interior design" loading="lazy">
+                <span class="design-category">Kitchen · Traditional</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Traditional Family Kitchen</h3>
+              <p>Warm wood cabinetry, classic hardware and practical family-friendly storage create a welcoming cooking
+                space.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹60,000</span>
+                <a class="view-design" href="details.html?design=traditional-kitchen">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="office">
+            <a href="details.html?design=boho-office" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/bohoho3.jpg" alt="Boho home office interior design" loading="lazy">
+                <span class="design-category">Home Office · Boho</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Boho Creative Workspace</h3>
+              <p>A creative workspace with natural materials, plants, flexible shelving and a comfortable desk
+                arrangement.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹32,000</span>
+                <a class="view-design" href="details.html?design=boho-office">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="office">
+            <a href="details.html?design=modern-office" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/mod4ho.jpg" alt="Modern home office interior design" loading="lazy">
+                <span class="design-category">Home Office · Modern</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Modern Executive Office</h3>
+              <p>A focused home office with a streamlined desk, ergonomic seating, task lighting and concealed cable
+                storage.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹36,000</span>
+                <a class="view-design" href="details.html?design=modern-office">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="office">
+            <a href="details.html?design=minimal-office" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/miniho2.jpg" alt="Minimalistic home office interior design" loading="lazy">
+                <span class="design-category">Home Office · Minimalistic</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Minimalist Focus Office</h3>
+              <p>A quiet workspace with a simple desk, essential storage, soft neutral colours and very little visual
+                clutter.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹29,000</span>
+                <a class="view-design" href="details.html?design=minimal-office">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="balcony">
+            <a href="details.html?design=boho-balcony" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/bohobal1.jpg" alt="Boho balcony interior design" loading="lazy">
+                <span class="design-category">Balcony · Boho</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Boho Garden Balcony</h3>
+              <p>A cosy outdoor nook with woven seating, patterned cushions, potted plants and warm lantern lighting.
+              </p>
+              <div class="design-footer">
+                <span class="design-price">From ₹24,000</span>
+                <a class="view-design" href="details.html?design=boho-balcony">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="balcony">
+            <a href="details.html?design=modern-balcony-plus" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/modbal3.jpg" alt="Modern balcony interior design" loading="lazy">
+                <span class="design-category">Balcony · Modern</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Modern City Balcony</h3>
+              <p>A contemporary balcony with compact modular seating, clean planters and a practical layout for city
+                living.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹28,000</span>
+                <a class="view-design" href="details.html?design=modern-balcony-plus">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="balcony">
+            <a href="details.html?design=minimal-balcony" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/minibal3.jpg" alt="Minimalistic balcony interior design" loading="lazy">
+                <span class="design-category">Balcony · Minimalistic</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Minimal Calm Balcony</h3>
+              <p>A simple balcony retreat with a few carefully chosen plants, compact furniture and a calm, uncluttered
+                feel.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹22,000</span>
+                <a class="view-design" href="details.html?design=minimal-balcony">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="bathroom">
+            <a href="details.html?design=boho-bathroom" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/bohobath2.jpg" alt="Boho bathroom interior design" loading="lazy">
+                <span class="design-category">Bathroom · Boho</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Boho Earthy Bathroom</h3>
+              <p>Earthy textures, warm-toned accessories, natural finishes and soft lighting create a relaxed bathroom
+                retreat.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹43,000</span>
+                <a class="view-design" href="details.html?design=boho-bathroom">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="bathroom">
+            <a href="details.html?design=modern-bathroom" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/modernbath3.jpg" alt="Modern bathroom interior design" loading="lazy">
+                <span class="design-category">Bathroom · Modern</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Modern Spa Bathroom</h3>
+              <p>A spa-inspired bathroom with sleek fixtures, stone-look surfaces, clean lines and layered mirror
+                lighting.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹48,000</span>
+                <a class="view-design" href="details.html?design=modern-bathroom">View Details →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="living">
+
+            <a href="details.html?design=traditional-living" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/tradliving2.jpg" alt="Traditional living room">
+                <span class="design-category">Living Room · Traditional</span>
+              </div>
+            </a>
+
+            <div class="design-info">
+              <h3>Traditional Living</h3>
+              <p>Warm neutral tones with traditional furniture.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹45,000</span>
+                <a class="view-design" href="details.html?design=traditional-living">
+                  View Details →
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="design-card" data-category="bedroom">
+
+            <a href="details.html?design=mod-bedroom" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/moderbed5.jpg" alt="mod bedroom">
+
+                <span class="design-category">Bedroom · Modern</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Modern Bedroom</h3>
+
+              <p>Soft modern interiors and calming colors.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹40,000</span>
+
+                <a class="view-design" href="details.html?design=mod-bedroom">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+          <article class="design-card" data-category="living">
+
+            <a href="details.html?design=boho-living" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/boholiving2.jpg" alt="Boho living room">
+
+                <span class="design-category">Living Room · Boho</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Boho Living</h3>
+
+              <p>Eclectic and vibrant with global influences.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹45,000</span>
+
+                <a class="view-design" href="details.html?design=boho-living">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+          <article class="design-card" data-category="bedroom">
+
+            <a href="details.html?design=minimalistic-bedroom" class="design-image-link">
+
+              <div class="design-image">
+                <img src="assets/minibed2.jpg" alt="Serene bedroom">
+
+                <span class="design-category">Bedroom · Minimalistic</span>
+              </div>
+
+            </a>
+
+            <div class="design-info">
+              <h3>Minimalistic Bedroom</h3>
+
+              <p>Soft textures and calming neutral colors.</p>
+
+              <div class="design-footer">
+                <span class="design-price">From ₹41,000</span>
+
+                <a class="view-design" href="details.html?design=minimalistic-bedroom">
+                  View Details →
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+          <article class="design-card" data-category="bathroom">
+            <a href="details.html?design=minimal-bathroom" class="design-image-link">
+              <div class="design-image">
+                <img src="assets/minibath2.jpg" alt="Minimalistic bathroom interior design" loading="lazy">
+                <span class="design-category">Bathroom · Minimalistic</span>
+              </div>
+            </a>
+            <div class="design-info">
+              <h3>Minimalist Pure Bathroom</h3>
+              <p>A bright, simple bathroom with uncluttered counters, discreet storage and a limited palette of light
+                finishes.</p>
+              <div class="design-footer">
+                <span class="design-price">From ₹39,000</span>
+                <a class="view-design" href="details.html?design=minimal-bathroom">View Details →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const filterButtons = document.querySelectorAll(".filter-button");
+      const designCards = document.querySelectorAll(".design-card");
+
+      filterButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+          // Remove active styling from all buttons
+          filterButtons.forEach(function (btn) {
+            btn.classList.remove("active");
+          });
+
+          // Highlight the selected button
+          button.classList.add("active");
+
+          const selectedCategory = button.dataset.category;
+
+          // Show matching designs
+          designCards.forEach(function (card) {
+            const cardCategory = card.dataset.category;
+
+            if (
+              selectedCategory === "all" ||
+              cardCategory === selectedCategory
+            ) {
+              card.style.display = "";
+            } else {
+              card.style.display = "none";
+            }
+          });
+
+        });
+
+      });
+
+    });
+  </script>
+</body>
+
+</html>
+<footer>DreamDecor · Interior design inspiration & professional assistance</footer>
+</body>
+
+</html>

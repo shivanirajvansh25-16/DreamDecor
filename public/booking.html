@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Design | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a class="brand" href="index.html">DreamDecor</a>
+        <div class="navlinks">
+            <a href="explore.html">Explore</a>
+            <a href="profile.html">Profile</a>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <div class="form-card">
+            <span class="eyebrow">Your dream space starts here</span>
+            <h1>Book Your Interior Design</h1>
+            <p class="muted">
+                Share your project details and continue to the payment page.
+            </p>
+
+            <div class="notice">
+                <h2 id="designName">Selected Design</h2>
+                <p class="price" id="designPrice">₹0</p>
+                <p id="designDescription" class="muted">
+                    Your selected interior design concept.
+                </p>
+            </div>
+
+            <form id="bookingForm">
+                <label for="customerName">Full Name</label>
+                <input type="text" id="customerName" name="customerName" placeholder="Enter your full name" required>
+
+                <label for="customerEmail">Email Address</label>
+                <input type="email" id="customerEmail" name="customerEmail" placeholder="Enter your email" required>
+
+                <label for="customerPhone">Phone number</label>
+                <input id="customerPhone" name="customerPhone" type="tel" autocomplete="tel"
+                    placeholder="Enter your phone number" required>
+
+                <label for="room">Room Type</label>
+                <select id="room" name="room" required>
+                    <option value="">Select room type</option>
+                    <option>Living Room</option>
+                    <option>Bedroom</option>
+                    <option>Kitchen</option>
+                    <option>Home Office</option>
+                    <option>Balcony</option>
+                    <option>Bathroom</option>
+                    <option>Walk-In Closet</option>
+                </select>
+
+                <label for="projectDate">Preferred Consultation Date</label>
+                <input type="date" id="projectDate" name="projectDate" required>
+
+                <label for="address">Project Address</label>
+                <textarea id="address" name="address" rows="3" placeholder="Enter your city, area and address"
+                    required></textarea>
+
+                <label for="budget">Estimated Budget</label>
+                <select id="budget" name="budget" required>
+                    <option value="">Select your budget</option>
+                    <option>Below ₹25,000</option>
+                    <option>₹25,000 – ₹50,000</option>
+                    <option>₹50,000 – ₹1,00,000</option>
+                    <option>Above ₹1,00,000</option>
+                </select>
+
+                <label for="requirements">Additional Requirements</label>
+                <textarea id="requirements" name="requirements" rows="4"
+                    placeholder="Describe your preferred colours, materials or special requirements"></textarea>
+
+                <button type="submit" class="btn alt" id="bookingButton">
+                    Book Now
+                </button>
+
+                <p id="bookingMessage" class="helper" role="status"></p>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        DreamDecor · Design your space, your way
+    </footer>
+
+    <script>
+        // Design catalog. Prices are in Indian rupees.
+        const designCatalog = {
+            "warm-contemporary": {
+                name: "Warm Contemporary",
+                price: 25000,
+                room: "Living Room",
+                description: "Warm neutral colours, natural textures and contemporary furniture."
+            },
+            "modern-living": {
+                name: "Modern Living",
+                price: 45000,
+                room: "Living Room",
+                description: "Contemporary furniture and warm neutral tones."
+            },
+            "serene-bedroom": {
+                name: "Serene Bedroom",
+                price: 35000,
+                room: "Bedroom",
+                description: "Soft textures and calming neutral colours."
+            },
+            "soft-minimal": {
+                name: "Soft Minimal",
+                price: 18000,
+                room: "Bedroom",
+                description: "A restful bedroom with soft tones and uncluttered forms."
+            },
+            "minimalistic-bedroom": {
+                name: "Minimalistic Bedroom",
+                price: 41000,
+                room: "Bedroom",
+                description: "A minimalist bedroom with clean lines and practical storage."
+            },
+            "mod-bedroom": {
+                name: "Modern Bedroom",
+                price: 40000,
+                room: "Bedroom",
+                description: "A modern bedroom with organic finishes and layered lighting."
+            },
+            "modern-bedroom": {
+                name: "Modern Luxe Bedroom",
+                price: 44000,
+                room: "Bedroom",
+                description: "Clean lines, statement furniture and layered lighting."
+            },
+            "boho-bedroom": {
+                name: "Boho Retreat Bedroom",
+                price: 38000,
+                room: "Bedroom",
+                description: "Relaxed layers, woven textures and natural finishes."
+            },
+            "traditional-bedroom": {
+                name: "Traditional Classic Bedroom",
+                price: 41000,
+                room: "Bedroom",
+                description: "Timeless furniture and rich, warm finishes."
+            },
+            "minimal-kitchen": {
+                name: "Minimal Kitchen",
+                price: 55000,
+                room: "Kitchen",
+                description: "Clean cabinetry and functional modern storage."
+            },
+            "modern-wood": {
+                name: "Modern Wood",
+                price: 35000,
+                room: "Kitchen",
+                description: "Wood finishes, clean surfaces and efficient storage."
+            },
+            "modern-kitchen": {
+                name: "Modern Smart Kitchen",
+                price: 65000,
+                room: "Kitchen",
+                description: "Modern cabinetry and efficient work areas."
+            },
+            "traditional-kitchen": {
+                name: "Traditional Family Kitchen",
+                price: 60000,
+                room: "Kitchen",
+                description: "Classic details and a warm family-friendly layout."
+            },
+            "boho-kitchen": {
+                name: "Boho Natural Kitchen",
+                price: 58000,
+                room: "Kitchen",
+                description: "Earthy finishes and natural decorative details."
+            },
+            "focused-natural": {
+                name: "Focused & Natural",
+                price: 15000,
+                room: "Home Office",
+                description: "A focused workspace with natural light and useful storage."
+            },
+            "creative-office": {
+                name: "Creative Office",
+                price: 30000,
+                room: "Home Office",
+                description: "A workspace designed for focus and productivity."
+            },
+            "boho-office": {
+                name: "Boho Creative Workspace",
+                price: 32000,
+                room: "Home Office",
+                description: "Natural textures and a relaxed creative atmosphere."
+            },
+            "modern-office": {
+                name: "Modern Executive Office",
+                price: 36000,
+                room: "Home Office",
+                description: "A polished workspace with contemporary furniture."
+            },
+            "minimal-office": {
+                name: "Minimalist Focus Office",
+                price: 29000,
+                room: "Home Office",
+                description: "A simple, organised workspace with minimal distractions."
+            },
+            "urban-retreat": {
+                name: "Urban Retreat",
+                price: 10000,
+                room: "Balcony",
+                description: "A compact outdoor retreat with greenery and warm lighting."
+            },
+            "modern-balcony": {
+                name: "Modern Balcony",
+                price: 40000,
+                room: "Balcony",
+                description: "A comfortable outdoor space for relaxing."
+            },
+            "modern-balcony-plus": {
+                name: "Modern City Balcony",
+                price: 28000,
+                room: "Balcony",
+                description: "Contemporary seating and a neat outdoor layout."
+            },
+            "boho-balcony": {
+                name: "Boho Garden Balcony",
+                price: 24000,
+                room: "Balcony",
+                description: "Layered greenery, woven details and warm lighting."
+            },
+            "minimal-balcony": {
+                name: "Minimal Calm Balcony",
+                price: 22000,
+                room: "Balcony",
+                description: "A quiet outdoor space with clean lines."
+            },
+            "spa-calm": {
+                name: "Spa Calm",
+                price: 28000,
+                room: "Bathroom",
+                description: "A soothing bathroom with stone-inspired finishes."
+            },
+            "boho-bathroom": {
+                name: "Boho Earthy Bathroom",
+                price: 43000,
+                room: "Bathroom",
+                description: "Earthy finishes and natural decorative textures."
+            },
+            "modern-bathroom": {
+                name: "Modern Spa Bathroom",
+                price: 48000,
+                room: "Bathroom",
+                description: "Modern finishes and relaxing layered lighting."
+            },
+            "minimal-bathroom": {
+                name: "Minimalist Pure Bathroom",
+                price: 39000,
+                room: "Bathroom",
+                description: "Clean surfaces and a simple, calming layout."
+            },
+            "walk-in-closet": {
+                name: "Walk-In Closet",
+                price: 35000,
+                room: "Walk-In Closet",
+                description: "Organised storage with a practical layout."
+            },
+            "traditional-walk-in-closet": {
+                name: "Traditional Walk-In Closet",
+                price: 35000,
+                room: "Walk-In Closet",
+                description: "Classic finishes and organised wardrobe storage."
+            },
+            "boho-living": {
+                name: "Boho Living",
+                price: 45000,
+                room: "Living Room",
+                description: "Earthy colours, layered rugs and natural textures."
+            },
+            "traditional-living": {
+                name: "Traditional Living",
+                price: 45000,
+                room: "Living Room",
+                description: "Classic furniture, rich fabrics and warm wood."
+            },
+            "minimal-living": {
+                name: "Minimalist Living Studio",
+                price: 42000,
+                room: "Living Room",
+                description: "Simple forms, neutral colours and uncluttered storage."
+            }
+        };
+
+        // Read the selected design passed from details.html.
+        const params = new URLSearchParams(window.location.search);
+        const selectedDesignKey =
+            (params.get("design") || "warm-contemporary").trim();
+
+        const catalogDesign =
+            designCatalog[selectedDesignKey] ||
+            designCatalog["warm-contemporary"];
+
+        // Use the selected design's catalog price unless a valid price
+        // was explicitly passed by the details page.
+        const urlPrice = params.get("price");
+        const hasValidUrlPrice =
+            urlPrice !== null &&
+            urlPrice.trim() !== "" &&
+            Number.isFinite(Number(urlPrice)) &&
+            Number(urlPrice) >= 0;
+
+        const selectedDesign = {
+            ...catalogDesign,
+            name: params.get("name") || catalogDesign.name,
+            price: hasValidUrlPrice
+                ? Number(urlPrice)
+                : catalogDesign.price,
+            room: params.get("room") || catalogDesign.room,
+            description: params.get("description") || catalogDesign.description
+        };
+
+        // Display the chosen design and its price.
+        document.getElementById("designName").textContent =
+            selectedDesign.name;
+
+        document.getElementById("designPrice").textContent =
+            "₹" + selectedDesign.price.toLocaleString("en-IN");
+
+        document.getElementById("designDescription").textContent =
+            selectedDesign.description;
+
+        document.getElementById("room").value = selectedDesign.room;
+
+        // Store the selected design for use during booking.
+        localStorage.setItem("dreamdecorPendingBooking", JSON.stringify({
+            designKey: selectedDesignKey,
+            designName: selectedDesign.name,
+            price: selectedDesign.price,
+            room: selectedDesign.room,
+            description: selectedDesign.description
+        }));
+
+        // Do not allow a past consultation date.
+        const today = new Date();
+        const localToday = [
+            today.getFullYear(),
+            String(today.getMonth() + 1).padStart(2, "0"),
+            String(today.getDate()).padStart(2, "0")
+        ].join("-");
+
+        document.getElementById("projectDate").min = localToday;
+
+        // Prefill the name and email if profile details are available.
+        try {
+            const user = JSON.parse(
+                localStorage.getItem("dreamdecorCurrentUser") || "null"
+            );
+
+            if (user) {
+                document.getElementById("customerName").value = user.name || "";
+                document.getElementById("customerEmail").value = user.email || "";
+            }
+        } catch (error) {
+            console.warn("Could not load saved profile details.", error);
+        }
+
+        // Save the booking before continuing to payment.
+        document.getElementById("bookingForm").addEventListener(
+            "submit",
+            async function (event) {
+                event.preventDefault();
+
+                const customerName =
+                    document.getElementById("customerName").value.trim();
+
+                const customerEmail =
+                    document.getElementById("customerEmail").value.trim();
+
+                const customerPhone =
+                    document.getElementById("customerPhone").value.trim();
+
+                const address =
+                    document.getElementById("address").value.trim();
+
+                const appointmentDate =
+                    document.getElementById("projectDate").value;
+
+                const budget =
+                    document.getElementById("budget").value;
+
+                const requirements =
+                    document.getElementById("requirements").value.trim();
+
+                const bookingData = {
+                    customer_name: customerName,
+                    email: customerEmail,
+                    phone: customerPhone,
+                    design_key: selectedDesignKey,
+                    design_name: selectedDesign.name,
+                    price: selectedDesign.price,
+                    appointment_date: appointmentDate || null,
+                    address: address,
+                    budget: budget,
+                    requirements: requirements,
+                    payment_preference: "Discuss with designer"
+                };
+
+                const button =
+                    document.getElementById("bookingButton");
+
+                const message =
+                    document.getElementById("bookingMessage");
+
+                button.disabled = true;
+                button.textContent = "Saving booking...";
+                message.textContent = "";
+
+                try {
+                    const response = await fetch("/api/order", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(bookingData)
+                    });
+
+                    const result = await response.json();
+
+                    if (!response.ok || !result.success) {
+                        throw new Error(
+                            result.error ||
+                            result.message ||
+                            "Booking could not be saved."
+                        );
+                    }
+
+
+                    localStorage.setItem(
+                        "dreamdecorLastBooking",
+                        JSON.stringify({
+                            ...bookingData,
+                            bookingId: result.bookingId
+                        })
+                    );
+
+                    localStorage.setItem("dreamdecorPendingPayment", JSON.stringify({
+                        bookingId: result.bookingId,
+                        design: selectedDesign.name,
+                        price: selectedDesign.price,
+                        email: customerEmail
+                    }));
+
+                    window.location.href =
+                        "payment.html?order=" + encodeURIComponent(result.bookingId);
+
+
+                } catch (error) {
+                    console.error("Booking error:", error);
+
+                    message.textContent =
+                        error.message ||
+                        "Could not connect to the server. Please try again.";
+
+                    button.disabled = false;
+                    button.textContent = "Book Now";
+                }
+            }
+        );
+    </script>
+
+</body>
+
+</html>

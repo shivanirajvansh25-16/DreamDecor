@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Create account | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-head {
+            margin-bottom: 28px
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            color: var(--accent);
+            font-weight: 700
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 36px;
+            align-items: start
+        }
+
+        .feature-list {
+            padding-left: 20px;
+            line-height: 1.9
+        }
+
+        .wide-img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 18px;
+            max-height: 560px
+        }
+
+        .helper {
+            font-size: .9rem;
+            line-height: 1.6;
+            color: var(--muted)
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px
+        }
+
+        .notice {
+            padding: 14px 16px;
+            background: #f1ebe4;
+            border-radius: 12px;
+            margin: 16px 0
+        }
+
+        .form-card h1 {
+            font-family: Georgia, serif
+        }
+
+        .form-card form button {
+            margin-top: 20px
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px
+        }
+
+        .form-card small {
+            color: var(--muted)
+        }
+
+        .success-mark {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #e6efe4;
+            color: #2d6337;
+            font-size: 2rem
+        }
+
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px
+        }
+
+        .compare figure {
+            margin: 0;
+            background: var(--paper);
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 18px
+        }
+
+        .compare img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px
+        }
+
+        .compare figcaption {
+            padding: 12px 4px 4px;
+            font-weight: 700
+        }
+
+        .design-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 14px 0
+        }
+
+        @media(max-width:750px) {
+
+            .split,
+            .compare,
+            .form-row {
+                grid-template-columns: 1fr
+            }
+
+            .compare img {
+                height: 240px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav"><a class="brand" href="index.html">DreamDecor</a>
+        <div class="navlinks"><a href="explore.html">Explore</a><a href="before-after.html">Before / After</a><a
+                href="ai.html">AI Preview</a><a href="profile.html">Profile</a><a class="btn alt"
+                href="login.html">Login</a></div>
+    </nav>
+    <main class="section container">
+        <div class="form-card"><span class="eyebrow">Start your project</span>
+            <h1>Create your account</h1>
+            <p class="muted">Save ideas and keep your demo project details together.</p>
+            <form id="signupForm"><label for="name">Full name</label><input id="name" name="name" autocomplete="name"
+                    required minlength="2" placeholder="Your name"><label for="email">Email address</label><input
+                    id="email" name="email" type="email" autocomplete="email" required
+                    placeholder="Enter your email"><label for="password">Create password</label><input id="password"
+                    name="password" type="password" autocomplete="new-password" required minlength="8"
+                    placeholder="At least 8 characters"><button class="btn alt" type="submit">Create account</button>
+                <p class="helper" id="formMessage" role="status"></p>
+            </form>
+            <p class="helper">Already have an account? <a href="login.html"><b>Log in</b></a></p>
+            <div class="notice">
+                Your account details are saved to the DreamDecor database.
+                Your password is securely hashed before storage.
+            </div>
+    </main>
+    <footer>DreamDecor · Interior design inspiration & professional assistance</footer>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const message = document.getElementById("formMessage");
+            const button = document.querySelector("#signupForm button");
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+
+            message.textContent = "Creating your account...";
+            button.disabled = true;
+
+            try {
+                const response = await fetch("/api/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    message.textContent = result.message ||
+                        "Could not create your account.";
+                    return;
+                }
+
+                message.textContent =
+                    "Account created successfully! Redirecting to login...";
+
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1200);
+            } catch (error) {
+                message.textContent =
+                    "Cannot connect to the server. Please try again.";
+            } finally {
+                button.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

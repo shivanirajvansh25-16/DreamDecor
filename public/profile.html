@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Profile | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .profile-header {
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .profile-layout {
+            display: grid;
+            grid-template-columns: 310px minmax(0, 1fr);
+            gap: 26px;
+            align-items: start;
+        }
+
+        .profile-card,
+        .details-card,
+        .orders-card {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 22px;
+            min-width: 0;
+        }
+
+        .profile-card {
+            text-align: center;
+            position: sticky;
+            top: 20px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, .10);
+            margin-bottom: 12px;
+        }
+
+        .profile-name {
+            margin: 6px 0;
+            font-family: Georgia, serif;
+        }
+
+        .profile-email {
+            color: var(--muted);
+            overflow-wrap: anywhere;
+        }
+
+        .account-badge {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 30px;
+            background: #e6efe4;
+            color: #2d6337;
+            font-size: .78rem;
+            font-weight: 700;
+            margin: 10px 0 18px;
+        }
+
+        .profile-actions {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .profile-actions .btn {
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .section-title {
+            font-family: Georgia, serif;
+            margin: 0 0 20px;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .detail-item {
+            padding: 16px;
+            border-radius: 12px;
+            background: var(--cream, #fff8f6);
+            border: 1px solid var(--line);
+            min-width: 0;
+        }
+
+        .detail-label {
+            display: block;
+            color: var(--muted);
+            font-size: .82rem;
+            margin-bottom: 7px;
+        }
+
+        .detail-value {
+            font-weight: 700;
+            overflow-wrap: anywhere;
+        }
+
+        .orders-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .orders-heading .section-title {
+            margin: 0;
+        }
+
+        .order-count {
+            padding: 7px 12px;
+            border-radius: 30px;
+            background: #f1ebe4;
+            font-size: .82rem;
+            font-weight: 700;
+        }
+
+        .orders-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .order-item {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            background: white;
+        }
+
+        .order-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .order-title {
+            margin: 0 0 7px;
+            font-size: 1.08rem;
+        }
+
+        .order-reference {
+            color: var(--muted);
+            font-size: .85rem;
+            overflow-wrap: anywhere;
+        }
+
+        .order-status {
+            display: inline-block;
+            border-radius: 30px;
+            padding: 6px 10px;
+            background: #e6efe4;
+            color: #2d6337;
+            font-size: .75rem;
+            font-weight: 700;
+            text-transform: capitalize;
+        }
+
+        .order-status.pending {
+            background: #fff0d6;
+            color: #875a13;
+        }
+
+        .order-status.cancelled,
+        .order-status.failed {
+            background: #f8e1e1;
+            color: #a12d2d;
+        }
+
+        .order-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .order-meta-item {
+            font-size: .9rem;
+        }
+
+        .order-meta-item span {
+            display: block;
+            color: var(--muted);
+            font-size: .8rem;
+            margin-bottom: 5px;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .order-actions .btn {
+            text-align: center;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 32px 18px;
+            border: 1px dashed var(--line);
+            border-radius: 14px;
+        }
+
+        .empty-state h3 {
+            font-family: Georgia, serif;
+            margin-top: 0;
+        }
+
+        .message {
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            background: #f1ebe4;
+            color: #493c34;
+        }
+
+        .profile-footer {
+            color: var(--muted);
+            font-size: .85rem;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 800px) {
+            .profile-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-card {
+                position: static;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .profile-card,
+            .details-card,
+            .orders-card {
+                padding: 17px;
+            }
+
+            .details-grid,
+            .order-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="logo-container">
+            <img src="logo.png" alt="Dream Decor Logo">
+            <a class="brand" href="index.html">DreamDecor</a>
+
+            <div class="navlinks">
+                <a href="explore.html">Explore</a>
+                <a href="before-after.html">Before / After</a>
+                <a href="ai.html">AI Preview</a>
+                <a href="profile.html">Profile</a>
+                <a class="btn alt" href="login.html" id="loginLink">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <header class="profile-header">
+            <span class="eyebrow">Your personal space</span>
+            <h1>My Profile</h1>
+            <p class="muted">
+                Manage your account details and keep track of your DreamDecor orders.
+            </p>
+        </header>
+
+        <div id="pageMessage" class="message" hidden></div>
+
+        <section class="profile-layout">
+
+            <!-- LEFT: ACCOUNT SUMMARY -->
+            <aside class="profile-card">
+                <img id="avatar" class="avatar" src="assets/profile.jpg" alt="Profile portrait">
+
+                <h2 class="profile-name" id="profileName">Loading profile...</h2>
+                <p class="profile-email" id="profileEmail">Please wait</p>
+
+                <span class="account-badge" id="accountBadge">
+                    DreamDecor Member
+                </span>
+
+                <div class="profile-actions">
+                    <a class="btn" href="explore.html">Explore Designs</a>
+                    <a class="btn alt" href="#my-orders">View My Orders</a>
+                    <button class="btn alt" id="logoutButton" type="button">
+                        Log Out
+                    </button>
+                </div>
+
+                <p class="profile-footer">
+                    Your DreamDecor account helps you keep your design requests
+                    and order information together.
+                </p>
+            </aside>
+
+            <!-- RIGHT: DETAILS AND ORDERS -->
+            <div>
+
+                <section class="details-card">
+                    <h2 class="section-title">My Details</h2>
+
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <span class="detail-label">Full Name</span>
+                            <div class="detail-value" id="detailName">—</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Email Address</span>
+                            <div class="detail-value" id="detailEmail">—</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Phone Number</span>
+                            <div class="detail-value" id="detailPhone">Not provided</div>
+                        </div>
+
+                        <div class="detail-item">
+                            <span class="detail-label">Account Status</span>
+                            <div class="detail-value" id="detailStatus">Checking...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="orders-card" id="my-orders">
+                    <div class="orders-heading">
+                        <h2 class="section-title">My Orders</h2>
+                        <span class="order-count" id="orderCount">0 orders</span>
+                    </div>
+
+                    <div id="ordersList" class="orders-list">
+                        <p class="muted">Loading your orders...</p>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        DreamDecor · Interior design inspiration &amp; professional assistance
+    </footer>
+
+    <script>
+        const $ = (id) => document.getElementById(id);
+
+        function escapeHTML(value) {
+            return String(value ?? "").replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[character]);
+        }
+
+        function readLocalUser() {
+            try {
+                return JSON.parse(
+                    localStorage.getItem("dreamdecorCurrentUser") || "null"
+                );
+            } catch {
+                return null;
+            }
+        }
+
+        function readLocalOrders() {
+            try {
+                const orders = JSON.parse(
+                    localStorage.getItem("dreamdecorBookings") || "[]"
+                );
+
+                return Array.isArray(orders) ? orders : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function showMessage(message) {
+            $("pageMessage").textContent = message;
+            $("pageMessage").hidden = false;
+        }
+
+        function displayUser(user) {
+            const name = user?.name || user?.full_name || "DreamDecor Member";
+            const email = user?.email || "Email not available";
+            const phone = user?.phone || user?.phone_number || "Not provided";
+
+            $("profileName").textContent = name;
+            $("profileEmail").textContent = email;
+
+            $("detailName").textContent = name;
+            $("detailEmail").textContent = email;
+            $("detailPhone").textContent = phone;
+            $("detailStatus").textContent = "Active";
+
+            $("accountBadge").textContent = "DreamDecor Member";
+            $("loginLink").textContent = "My Profile";
+            $("loginLink").href = "profile.html";
+        }
+
+        function formatDate(value) {
+            if (!value) return "Not specified";
+
+            const date = new Date(value);
+
+            if (Number.isNaN(date.getTime())) {
+                return String(value);
+            }
+
+            return date.toLocaleDateString("en-IN", {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            });
+        }
+
+        function orderStatus(order) {
+            return String(
+                order.status || order.payment_status || "Pending"
+            ).toLowerCase();
+        }
+
+        function renderOrders(orders) {
+            $("orderCount").textContent =
+                `${orders.length} ${orders.length === 1 ? "order" : "orders"}`;
+
+            if (!orders.length) {
+                $("ordersList").innerHTML = `
+                    <div class="empty-state">
+                        <h3>No orders yet</h3>
+                        <p class="muted">
+                            You haven't made a design booking yet.
+                            Explore our designs and start planning your space.
+                        </p>
+                        <a class="btn" href="explore.html">Explore Designs</a>
+                    </div>
+                `;
+                return;
+            }
+
+            $("ordersList").innerHTML = orders.slice().reverse().map(order => {
+                const design = order.design_name
+                    || order.design
+                    || order.designName
+                    || "Interior Design";
+
+                const reference = order.orderId
+                    || order.order_id
+                    || order.reference
+                    || order.id
+                    || "Pending";
+
+                const price = order.price ?? order.total ?? order.amount;
+                const date = order.appointment_date
+                    || order.booking_date
+                    || order.created_at
+                    || order.date;
+
+                const status = orderStatus(order);
+
+                const statusClass = ["pending", "cancelled", "failed"]
+                    .includes(status) ? status : "";
+
+                const orderLink = "success.html?order="
+                    + encodeURIComponent(reference === "Pending" ? "" : reference);
+
+                return `
+                    <article class="order-item">
+                        <div class="order-top">
+                            <div>
+                                <h3 class="order-title">${escapeHTML(design)}</h3>
+                                <div class="order-reference">
+                                    Reference: ${escapeHTML(reference)}
+                                </div>
+                            </div>
+
+                            <span class="order-status ${statusClass}">
+                                ${escapeHTML(status)}
+                            </span>
+                        </div>
+
+                        <div class="order-meta">
+                            <div class="order-meta-item">
+                                <span>Estimated Price</span>
+                                <strong>
+                                    ${price !== undefined && price !== null && price !== ""
+                        ? escapeHTML(
+                            typeof price === "number"
+                                ? "₹" + price.toLocaleString("en-IN")
+                                : price
+                        )
+                        : "To be confirmed"}
+                                </strong>
+                            </div>
+
+                            <div class="order-meta-item">
+                                <span>Booking Date</span>
+                                <strong>${escapeHTML(formatDate(date))}</strong>
+                            </div>
+                        </div>
+
+                        <div class="order-actions">
+                            <a class="btn alt"
+                               href="${escapeHTML(orderLink)}">
+                                View Confirmation
+                            </a>
+
+                            <a class="btn" href="explore.html">
+                                Explore More
+                            </a>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+        }
+
+
+        async function loadProfile() {
+            let user = readLocalUser();
+            let backendAuthenticated = false;
+
+            try {
+                const response = await fetch("/api/me", {
+                    method: "GET",
+                    credentials: "same-origin"
+                });
+
+                const contentType = response.headers.get("content-type") || "";
+
+                if (contentType.includes("application/json")) {
+                    const result = await response.json();
+
+                    if (response.ok && result.user) {
+                        user = result.user;
+                        backendAuthenticated = true;
+                    }
+                } else {
+                    console.error("/api/me returned HTML instead of JSON.");
+                }
+            } catch (error) {
+                console.error("Profile loading error:", error);
+            }
+
+            if (user) {
+                displayUser(user);
+            } else {
+                $("profileName").textContent = "Guest";
+                $("profileEmail").textContent = "You are browsing as a guest.";
+                $("detailName").textContent = "Guest";
+                $("detailEmail").textContent = "Not signed in";
+                $("detailPhone").textContent = "Not provided";
+                $("detailStatus").textContent = "Guest";
+                $("accountBadge").textContent = "Guest Account";
+                $("loginLink").textContent = "Login";
+                $("loginLink").href = "login.html";
+            }
+
+            let orders = [];
+
+            if (backendAuthenticated) {
+                try {
+                    const response = await fetch("/api/orders", {
+                        method: "GET",
+                        credentials: "same-origin"
+                    });
+
+                    const contentType = response.headers.get("content-type") || "";
+
+                    if (!contentType.includes("application/json")) {
+                        throw new Error(
+                            "/api/orders returned HTML. Check the route in server.js."
+                        );
+                    }
+
+                    const result = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(result.error || "Could not load orders.");
+                    }
+
+                    orders = Array.isArray(result.orders) ? result.orders : [];
+                } catch (error) {
+                    console.error("Orders loading error:", error);
+                    showMessage(error.message);
+                }
+            }
+
+            renderOrders(orders);
+        }
+
+        $("logoutButton").addEventListener("click", async () => {
+            try {
+                await fetch("/api/logout", {
+                    method: "POST",
+                    credentials: "same-origin"
+                });
+            } catch (error) {
+                console.warn("Backend logout could not be reached.", error);
+            }
+
+            localStorage.removeItem("dreamdecorCurrentUser");
+
+            // This clears the browser's local demo login, not the database account.
+            window.location.href = "login.html";
+        });
+
+        loadProfile();
+    </script>
+</body>
+
+</html>

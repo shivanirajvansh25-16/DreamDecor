@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .contact-header {
+            max-width: 760px;
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .contact-header h1,
+        .contact-info h2,
+        .contact-form h2 {
+            font-family: Georgia, serif;
+        }
+
+        .contact-header p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: .8fr 1.2fr;
+            gap: 26px;
+            align-items: start;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 26px;
+            min-width: 0;
+        }
+
+        .contact-info>p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .contact-detail {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .contact-detail:last-child {
+            border-bottom: 0;
+        }
+
+        .contact-detail strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .contact-detail p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-detail a {
+            color: var(--accent);
+            overflow-wrap: anywhere;
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: 700;
+            margin: 16px 0 7px;
+        }
+
+        .contact-form input,
+        .contact-form select,
+        .contact-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 13px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            background: white;
+            color: inherit;
+            font: inherit;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .contact-form button {
+            margin-top: 20px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .form-message {
+            padding: 12px;
+            border-radius: 9px;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .form-message.success {
+            background: #e6efe4;
+            color: #2d6337;
+        }
+
+        .form-message.error {
+            background: #f8e1e1;
+            color: #a12d2d;
+        }
+
+        .privacy-note {
+            color: var(--muted);
+            font-size: .83rem;
+            line-height: 1.6;
+            margin-top: 14px;
+        }
+
+        @media(max-width:750px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a class="brand" href="index.html">DreamDecor</a>
+
+        <div class="navlinks">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="about-us.html">About Us</a>
+            <a href="faqs.html">FAQs</a>
+            <a href="profile.html">Profile</a>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <header class="contact-header">
+            <span class="eyebrow">Customer care</span>
+            <h1>How can we help you?</h1>
+            <p>
+                Have a question about a design or booking? Found a problem
+                on the website? Want to suggest an improvement? Send our team
+                a message using the form below.
+            </p>
+        </header>
+
+        <section class="contact-layout">
+
+            <!-- Contact information -->
+            <aside class="contact-info">
+                <h2>Get in Touch</h2>
+
+                <p>
+                    Share your question or concern. Please include your booking
+                    reference if your message relates to an existing request.
+                </p>
+
+                <div class="contact-detail">
+                    <strong>Customer Support</strong>
+                    <p>Questions, booking assistance, and website feedback.</p>
+                </div>
+
+                <div class="contact-detail">
+                    <strong>Email</strong>
+                    <p>
+                        <a href="mailto:your-email@example.com">
+                            Add your support email
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-detail">
+                    <strong>Phone</strong>
+                    <p>
+                        <a href="tel:+910000000000">
+                            Add your contact number
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-detail">
+                    <strong>Office</strong>
+                    <p>Add your business address here.</p>
+                </div>
+
+                <div class="contact-detail">
+                    <strong>Helpful Pages</strong>
+                    <p>
+                        <a href="faqs.html">Read FAQs</a><br>
+                        <a href="booking.html">Make a Booking</a><br>
+                        <a href="profile.html">View My Profile</a>
+                    </p>
+                </div>
+            </aside>
+
+            <!-- Customer help form -->
+            <section class="contact-form">
+                <h2>Send Us a Message</h2>
+
+                <form id="contactForm">
+                    <label for="contactName">Full Name *</label>
+                    <input type="text" id="contactName" name="name" placeholder="Enter your full name"
+                        autocomplete="name" maxlength="100" required>
+
+                    <label for="contactEmail">Email Address *</label>
+                    <input type="email" id="contactEmail" name="email" placeholder="Enter your email"
+                        autocomplete="email" maxlength="254" required>
+
+                    <label for="contactPhone">Mobile Number *</label>
+                    <input type="tel" id="contactPhone" name="phone" placeholder="Enter your mobile number"
+                        autocomplete="tel" maxlength="20" required>
+
+                    <label for="contactCategory">What do you need help with? *</label>
+                    <select id="contactCategory" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Booking Support">Booking Support</option>
+                        <option value="Design Enquiry">Design Enquiry</option>
+                        <option value="Payment Enquiry">Payment Enquiry</option>
+                        <option value="Website Problem">Website Problem</option>
+                        <option value="Suggestion">Suggestion or Feedback</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <label for="bookingReference">
+                        Booking Reference (optional)
+                    </label>
+                    <input type="text" id="bookingReference" name="bookingReference"
+                        placeholder="Enter your booking reference if available" maxlength="100">
+
+                    <label for="contactMessage">Your Message or Suggestion *</label>
+                    <textarea id="contactMessage" name="message" placeholder="Tell us how we can help..." minlength="5"
+                        maxlength="3000" required></textarea>
+
+                    <button type="submit" class="btn alt" id="sendButton">
+                        Send Message
+                    </button>
+
+                    <p id="formMessage" class="form-message" role="status" aria-live="polite" hidden></p>
+
+                    <p class="privacy-note">
+                        Your contact details and message will be submitted
+                        to DreamDecor customer support. Please do not include
+                        passwords or sensitive payment information.
+                    </p>
+                </form>
+            </section>
+
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-brand">DreamDecor</div>
+                <p>Interior design inspiration and customer assistance.</p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Explore Designs</a></li>
+                    <li><a href="before-after.html">Before &amp; After</a></li>
+                    <li><a href="ai.html">AI Preview</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Help &amp; Information</h3>
+                <ul class="footer-links">
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="booking.html">Book a Design</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; <span class="year"></span>
+                DreamDecor. All rights reserved.
+            </p>
+            <a href="contact-us.html">Customer Help</a>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll(".year").forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
+
+        const contactForm = document.getElementById("contactForm");
+        const sendButton = document.getElementById("sendButton");
+        const formMessage = document.getElementById("formMessage");
+
+        function showFormMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = "form-message " + type;
+            formMessage.hidden = false;
+        }
+
+        contactForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const payload = {
+                name: document.getElementById("contactName").value.trim(),
+                email: document.getElementById("contactEmail").value.trim(),
+                phone: document.getElementById("contactPhone").value.trim(),
+                category: document.getElementById("contactCategory").value,
+                bookingReference:
+                    document.getElementById("bookingReference").value.trim(),
+                message: document.getElementById("contactMessage").value.trim()
+            };
+
+            if (
+                !payload.name ||
+                !payload.email ||
+                !payload.phone ||
+                !payload.category ||
+                payload.message.length < 5
+            ) {
+                showFormMessage(
+                    "Please complete all required fields and enter a message of at least 5 characters.",
+                    "error"
+                );
+                return;
+            }
+
+            sendButton.disabled = true;
+            sendButton.textContent = "Sending...";
+            formMessage.hidden = true;
+
+            try {
+                const response = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "same-origin",
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(
+                        result.message || result.error ||
+                        "Your message could not be saved."
+                    );
+                }
+
+                showFormMessage(
+                    "Thank you! Your message has been submitted successfully. Reference: " +
+                    result.contactId,
+                    "success"
+                );
+
+                contactForm.reset();
+
+            } catch (error) {
+                console.error("Contact form submission failed:", error);
+
+                showFormMessage(
+                    error.message ||
+                    "We couldn't submit your message. Please try again when the server is available.",
+                    "error"
+                );
+            } finally {
+                sendButton.disabled = false;
+                sendButton.textContent = "Send Message";
+            }
+        });
+    </script>
+</body>
+
+</html>

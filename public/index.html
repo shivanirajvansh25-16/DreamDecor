@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        [hidden] {
+            display: none !important;
+        }
+
+        #headerActions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        #accountInfo {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <div class="logo-container">
+            <img src="logo.png" alt="Dream Decor Logo">
+            <div class="logo-text">Dream Decor</div>
+        </div>
+
+        <div class="navlinks">
+            <a href="explore.html">Explore</a>
+            <a href="ai.html">AI Preview</a>
+            <a href="profile.html">Profile</a>
+
+            <!-- Login is the default when signed out -->
+            <div id="headerActions">
+                <a class="btn alt" href="login.html" id="loginLink">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <h1>Design a home that feels like you.</h1>
+            <p>
+                Browse curated room ideas, preview styles in your own space,
+                and connect with a designer.
+            </p>
+            <a class="btn alt" href="explore.html">Explore designs</a>
+        </div>
+    </section>
+
+    <section class="section container">
+        <h2>Design by room</h2>
+        <p class="muted">
+            Bedroom · Living Room · Kitchen · Home Office · Balcony · Bathroom
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <img src="assets/livingroom.jpg" alt="Living room design">
+                <div class="card-body">
+                    <h3>Living Room</h3>
+                    <a href="explore.html?category=living">Explore →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="assets/bedroom.jpg" alt="Bedroom design">
+                <div class="card-body">
+                    <h3>Bedroom</h3>
+                    <a href="explore.html?category=bedroom">Explore →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="assets/kitchen.jpg" alt="Kitchen design">
+                <div class="card-body">
+                    <h3>Kitchen</h3>
+                    <a href="explore.html?category=kitchen">Explore →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="assets/wicd.jpg" alt="Walk-in closet design">
+                <div class="card-body">
+                    <h3>Walk-in Closet</h3>
+                    <a href="explore.html?category=walk-in-closet">Explore →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="assets/balcony.jpg" alt="Balcony design">
+                <div class="card-body">
+                    <h3>Balcony</h3>
+                    <a href="explore.html?category=balcony">Explore →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="assets/home office.jpg" alt="Home office design">
+                <div class="card-body">
+                    <h3>Home Office</h3>
+                    <a href="explore.html?category=home-office">Explore →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+
+            <!-- About DreamDecor -->
+            <div class="footer-column">
+                <div class="footer-brand"><strong>DreamDecor</strong></div>
+
+                <p>
+                    Transform your house into a beautiful home with
+                    inspiring interior designs, personalized concepts,
+                    and thoughtful planning.
+                </p><br>
+
+                <a href="about-us.html"><strong>Discover Our Story → </strong></a>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-column">
+                <h3><strong>Quick Links</strong></h3>
+
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Explore Designs</a></li>
+                    <li><a href="before-after.html">Before &amp; After</a></li>
+                    <li><a href="ai.html">AI Room Preview</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Support -->
+            <div class="footer-column">
+                <h3>Customer Support</h3>
+
+                <ul class="footer-links">
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="faqs.html">Frequently Asked Questions</a></li>
+                    <li><a href="consultation.html">Book a Consultation</a></li>
+                    <li><a href="login.html">Sign In</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="footer-column footer-contact">
+                <h3>Get in Touch</h3>
+
+                <p>
+                    <strong>Phone:</strong><br>
+                    <a href="tel:+918745632105">+918745632105</a>
+                </p>
+
+                <p>
+                    <strong>Email:</strong><br>
+                    <a href="mailto:your-email@example.com">
+                        DreamDecor98@gmail.com
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Office:</strong><br>
+                    Modi Street, Fort, Mumbai - 400001
+                </p>
+
+                <a class="footer-social" href="https://www.instagram.com/yourusername/" target="_blank"
+                    rel="noopener noreferrer">
+                    📷 Follow us on Instagram
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="footerYear"></span>
+                DreamDecor. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("footerYear").textContent =
+            new Date().getFullYear();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const headerActions = document.getElementById("headerActions");
+
+            // Show Login by default.
+            function showLoggedOutMenu() {
+                const loginLink = document.createElement("a");
+                loginLink.href = "login.html";
+                loginLink.className = "btn alt";
+                loginLink.textContent = "Login";
+
+                headerActions.replaceChildren(loginLink);
+            }
+
+            // Show My Profile and Logout after successful login.
+            function showLoggedInMenu(user) {
+                const profileLink = document.createElement("a");
+                profileLink.href = "profile.html";
+                profileLink.className = "btn alt";
+                profileLink.textContent = "My Profile";
+
+                const logoutButton = document.createElement("button");
+                logoutButton.type = "button";
+                logoutButton.className = "btn alt";
+                logoutButton.textContent = "Logout";
+
+                logoutButton.addEventListener("click", async () => {
+                    logoutButton.disabled = true;
+                    logoutButton.textContent = "Logging out...";
+
+                    try {
+                        const response = await fetch("/api/logout", {
+                            method: "POST",
+                            credentials: "same-origin"
+                        });
+
+                        if (!response.ok) {
+                            throw new Error("Logout request failed.");
+                        }
+
+                        // Return home. The Login link will appear again.
+                        window.location.href = "/index.html";
+                    } catch (error) {
+                        console.error("Logout error:", error);
+                        alert("Unable to log out. Please check your server and try again.");
+
+                        logoutButton.disabled = false;
+                        logoutButton.textContent = "Logout";
+                    }
+                });
+
+                const welcome = document.createElement("span");
+                welcome.id = "accountInfo";
+                welcome.textContent = "Welcome, " + user.name;
+
+                headerActions.replaceChildren(
+                    welcome,
+                    profileLink,
+                    logoutButton
+                );
+            }
+
+            // Initially show Login.
+            showLoggedOutMenu();
+
+            // Ask the server whether the user is logged in.
+            try {
+                const response = await fetch("/api/me", {
+                    credentials: "include"
+                });
+
+                if (!response.ok) {
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (data.user) {
+                    showLoggedInMenu(data.user);
+                }
+            } catch (error) {
+                console.error("Could not check login status:", error);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

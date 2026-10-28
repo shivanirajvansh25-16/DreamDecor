@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AI design preview | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-head {
+            margin-bottom: 28px
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            color: var(--accent);
+            font-weight: 700
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 36px;
+            align-items: start
+        }
+
+        .feature-list {
+            padding-left: 20px;
+            line-height: 1.9
+        }
+
+        .wide-img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            border-radius: 18px;
+            max-height: 560px
+        }
+
+        .helper {
+            font-size: .9rem;
+            line-height: 1.6;
+            color: var(--muted)
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px
+        }
+
+        .notice {
+            padding: 14px 16px;
+            background: #f1ebe4;
+            border-radius: 12px;
+            margin: 16px 0
+        }
+
+        .form-card h1 {
+            font-family: Georgia, serif
+        }
+
+        .form-card form button {
+            margin-top: 20px
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px
+        }
+
+        .form-card small {
+            color: var(--muted)
+        }
+
+        .success-mark {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #e6efe4;
+            color: #2d6337;
+            font-size: 2rem
+        }
+
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px
+        }
+
+        .compare figure {
+            margin: 0;
+            background: var(--paper);
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: 18px
+        }
+
+        .compare img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 12px
+        }
+
+        .compare figcaption {
+            padding: 12px 4px 4px;
+            font-weight: 700
+        }
+
+        .design-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 14px 0
+        }
+
+        @media(max-width:750px) {
+
+            .split,
+            .compare,
+            .form-row {
+                grid-template-columns: 1fr
+            }
+
+            .compare img {
+                height: 240px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="logo-container">
+            <img src="logo.png" alt="Dream Decor Logo">
+            <a class="brand" href="index.html">DreamDecor</a>
+
+            <div class="navlinks"><a href="explore.html">Explore</a><a href="before-after.html">Before / After</a><a
+                    href="ai.html">AI Preview</a><a href="profile.html">Profile</a><a class="btn alt"
+                    href="login.html">Login</a></div>
+        </div>
+    </nav>
+    <main class="section container">
+        <div class="page-head"><span class="eyebrow">Concept studio</span>
+            <h1>Room design preview</h1>
+            <p class="muted">Upload your room photo, choose a style and create a visual concept preview.</p>
+        </div>
+        <section class="split">
+            <div class="form-card" style="margin:0;max-width:none">
+                <form id="previewForm"><label for="room">Your room photo</label><input id="room" type="file"
+                        accept="image/*" required><label for="style">Preferred style</label><select id="style">
+                        <option>Warm Contemporary</option>
+                        <option>Modern</option>
+                        <option>Soft Minimal</option>
+                        <option>Bohemian</option>
+                        <option>Organic Modern</option>
+                    </select><label for="notes">What would you like to change?</label><textarea id="notes"
+                        placeholder="Example: lighter colours, more storage, cozy lighting…"></textarea><button
+                        class="btn alt" type="submit">Create concept preview</button>
+                    <p class="helper">This page simulates an AI workflow. It does not call an AI image-generation
+                        service or alter the uploaded photo.</p>
+                </form>
+            </div>
+            <div>
+                <h2 style="font-family:Georgia,serif">Your preview</h2>
+                <div id="preview" class="card card-body">
+                    <p class="muted">Your selected photo and concept notes will appear here.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>DreamDecor · Interior design inspiration & professional assistance</footer>
+    <script>let previewUrl = null; document.getElementById('previewForm').addEventListener('submit', e => { e.preventDefault(); const file = room.files[0]; if (!file) return; if (!file.type.startsWith('image/')) { preview.textContent = 'Please select a valid image file.'; return; } if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = URL.createObjectURL(file); const safeStyle = style.value; const safeNotes = notes.value; preview.innerHTML = ''; const img = document.createElement('img'); img.src = previewUrl; img.alt = 'Uploaded room photo'; img.style.cssText = 'width:100%;max-height:380px;object-fit:cover;border-radius:12px'; const title = document.createElement('h3'); title.textContent = safeStyle + ' concept'; const p = document.createElement('p'); p.className = 'muted'; p.textContent = safeNotes || 'Style direction: ' + safeStyle + '.'; const notice = document.createElement('p'); notice.className = 'helper'; notice.textContent = 'Demo preview only — for true generated redesign imagery, connect an AI image service.'; preview.append(img, title, p, notice); });</script>
+</body>
+
+</html>

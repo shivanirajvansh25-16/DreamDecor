@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Consultation | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --ink: #382B24;
+            --muted: #817267;
+            --cream: #F5EEE6;
+            --paper: #FFFCF7;
+            --accent: #8B6B52;
+            --line: #E5D7C9;
+            --border: #E5D7C9;
+            --rose: #8B6B52;
+            --deep-rose: #6F4E37;
+        }
+
+
+        * {
+            box-sizing: border-box;
+
+        }
+
+        body {
+            margin: 0;
+            background: var(--cream);
+            color: var(--ink);
+            font-family: Arial, sans-serif;
+        }
+
+        .consult-hero {
+            background-image: url('assets/modernlliving1.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            padding: 60px 20px;
+            text-align: center;
+            /* background: linear-gradient(135deg, #E8D8C8, #FFFCF7); */
+        }
+
+        .consult-hero .eyebrow {
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .consult-hero h1 {
+            font-family: Georgia, serif;
+            color: #ffffff;
+            font-size: clamp(34px, 5vw, 52px);
+            margin: 15px 0;
+        }
+
+        .consult-hero p {
+            max-width: 620px;
+            margin: auto;
+            line-height: 1.8;
+            color: #ffffff;
+        }
+
+        .consult-layout {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 10 20px;
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .consult-info,
+        .consult-form {
+            background: #EDE0D3;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            border: 1px solid var(--deep-rose);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 28px rgba(80, 40, 55, 0.06);
+        }
+
+        .consult-info {
+            background: #EDE0D3;
+            border: 1px solid var(--deep-rose);
+            border-radius: 18px;
+        }
+
+        .consult-info h2,
+        .consult-form h2 {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            margin-top: 0;
+        }
+
+        .consult-info p {
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .benefit {
+            padding: 15px 0;
+            border-bottom: 1px solid #e6cbd5;
+        }
+
+        .benefit:last-child {
+            border-bottom: 0;
+        }
+
+        .benefit strong {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+
+        }
+
+        .field {
+            margin-bottom: 18px;
+
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            background: #fff;
+            color: var(--ink);
+            font: inherit;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--rose);
+            box-shadow: 0 0 0 3px rgba(183, 101, 127, 0.12);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: 0;
+            border-radius: 9px;
+            background: var(--deep-rose);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: var(--rose);
+        }
+
+        .submit-btn:disabled {
+            opacity: .65;
+            cursor: wait;
+        }
+
+        .form-message {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.5;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #e8f7ed;
+            color: #20633a;
+        }
+
+        .form-message.error {
+            display: block;
+            background: #fff0f0;
+            color: #9b2929;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: var(--deep-rose);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .consult-footer {
+            text-align: center;
+            padding: 25px 15px;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 760px) {
+            .consult-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .consult-info,
+            .consult-form {
+                padding: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="consult-hero">
+        <div class="eyebrow">DreamDecor Interior Design</div>
+        <h1>Let's Design Your Dream Space</h1>
+        <p>
+            Book a personal consultation with our design team. Tell us about your
+            space, your style, and your vision, and we'll help you plan your next step.
+        </p>
+    </header>
+
+    <main class="consult-layout">
+        <section class="consult-info">
+            <h2>Your Dream Space Starts Here</h2>
+            <p>
+                Whether you're refreshing one room or planning a complete home makeover,
+                a consultation is the perfect place to begin.
+            </p>
+
+            <div class="benefit">
+                <strong>01. Discuss Your Vision</strong>
+                <p>Share your ideas, preferred styles, and the way you use your space.</p>
+            </div>
+
+            <div class="benefit">
+                <strong>02. Explore Design Ideas</strong>
+                <p>Discuss colours, furniture, layouts, and inspiration for your room.</p>
+            </div>
+
+            <div class="benefit">
+                <strong>03. Plan Your Budget</strong>
+                <p>Tell us your budget so we can discuss suitable design possibilities.</p>
+            </div>
+
+            <div class="benefit">
+                <strong>04. Choose Your Consultation</strong>
+                <p>Request an online meeting or an in-person consultation.</p>
+            </div>
+
+            <a class="back-link" href="explore.html">← Explore our designs</a>
+            <br>
+            <a class="back-link" href="index.html">← Back to Home</a>
+        </section>
+
+        <section class="consult-form">
+            <h2>Book Your Consultation</h2>
+            <p>Fill out the form below to send us your consultation request.</p>
+
+            <form id="consultationForm">
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="name">Full Name *</label>
+                        <input id="name" name="name" type="text" maxlength="100" autocomplete="name" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="email">Email Address *</label>
+                        <input id="email" name="email" type="email" maxlength="254" autocomplete="email" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Mobile Number *</label>
+                        <input id="phone" name="phone" type="tel" maxlength="20" autocomplete="tel" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="consultationType">Consultation Type *</label>
+                        <select id="consultationType" name="consultationType" required>
+                            <option value="">Choose a type</option>
+                            <option value="Online">Online Consultation</option>
+                            <option value="In-person">In-person Consultation</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="roomType">Space to Design *</label>
+                        <select id="roomType" name="roomType" required>
+                            <option value="">Select a space</option>
+                            <option value="Living Room">Living Room</option>
+                            <option value="Bedroom">Bedroom</option>
+                            <option value="Kitchen">Kitchen</option>
+                            <option value="Bathroom">Bathroom</option>
+                            <option value="Balcony">Balcony</option>
+                            <option value="Office">Home Office</option>
+                            <option value="Full Home">Full Home</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="style">Preferred Design Style</label>
+                        <select id="style" name="style">
+                            <option value="Not sure yet">Not sure yet</option>
+                            <option value="Modern">Modern</option>
+                            <option value="Minimalistic">Minimalistic</option>
+                            <option value="Boho">Boho</option>
+                            <option value="Traditional">Traditional</option>
+                            <option value="Contemporary">Contemporary</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="date">Preferred Date *</label>
+                        <input id="date" name="date" type="date" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="time">Preferred Time *</label>
+                        <select id="time" name="time" required>
+                            <option value="">Choose a time</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label for="budget">Estimated Budget</label>
+                        <select id="budget" name="budget">
+                            <option value="Not decided">Not decided yet</option>
+                            <option value="Under ₹50,000">Under ₹50,000</option>
+                            <option value="₹50,000–₹1,00,000">₹50,000–₹1,00,000</option>
+                            <option value="₹1,00,000–₹3,00,000">₹1,00,000–₹3,00,000</option>
+                            <option value="₹3,00,000+">₹3,00,000+</option>
+                        </select>
+                    </div>
+
+                    <div class="field full">
+                        <label for="address">Address / Meeting Location</label>
+                        <input id="address" name="address" type="text" maxlength="500"
+                            placeholder="Required only if relevant to your consultation">
+                    </div>
+
+                    <div class="field full">
+                        <label for="message">Tell Us About Your Project *</label>
+                        <textarea id="message" name="message" minlength="5" maxlength="2000"
+                            placeholder="Describe your room, ideas, requirements, or questions..." required></textarea>
+                    </div>
+                </div>
+
+                <button class="submit-btn" id="submitButton" type="submit">
+                    Request Consultation
+                </button>
+
+                <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="consult-footer">
+        <p>DreamDecor — Thoughtful designs for beautiful living.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("consultationForm");
+        const submitButton = document.getElementById("submitButton");
+        const formMessage = document.getElementById("formMessage");
+        const dateInput = document.getElementById("date");
+
+        // Prevent users from selecting a date in the past.
+        const today = new Date();
+        const localToday = new Date(
+            today.getTime() - today.getTimezoneOffset() * 60000
+        ).toISOString().split("T")[0];
+        dateInput.min = localToday;
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            formMessage.className = "form-message";
+            formMessage.textContent = "";
+
+            const data = {
+                name: form.name.value.trim(),
+                email: form.email.value.trim(),
+                phone: form.phone.value.trim(),
+                consultationType: form.consultationType.value,
+                roomType: form.roomType.value,
+                style: form.style.value,
+                date: form.date.value,
+                time: form.time.value,
+                budget: form.budget.value,
+                address: form.address.value.trim(),
+                message: form.message.value.trim()
+            };
+
+            if (data.date < localToday) {
+                formMessage.className = "form-message error";
+                formMessage.textContent = "Please choose today or a future date.";
+                return;
+            }
+
+            submitButton.disabled = true;
+            submitButton.textContent = "Submitting Request...";
+
+            try {
+                const response = await fetch("/api/consultation", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || "Unable to submit your request.");
+                }
+
+                formMessage.className = "form-message success";
+                formMessage.textContent =
+                    "Your consultation request has been saved! Reference number: " +
+                    result.consultationId +
+                    ". Your preferred date and time are a request, not a confirmed appointment. Our team will contact you to confirm.";
+                form.reset();
+                dateInput.min = localToday;
+            } catch (error) {
+                formMessage.className = "form-message error";
+                formMessage.textContent =
+                    error.message ||
+                    "Could not connect to DreamDecor. Please try again.";
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = "Request Consultation";
+            }
+        });
+    </script>
+</body>
+
+</html>

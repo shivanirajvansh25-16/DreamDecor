@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Us | DreamDecor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .about-hero {
+            padding: 48px 0;
+            max-width: 800px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .14em;
+            font-size: .78rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .about-hero h1,
+        .about-card h2 {
+            font-family: Georgia, serif;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1.15;
+        }
+
+        .about-hero p {
+            line-height: 1.9;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .about-card {
+            padding: 25px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+        }
+
+        .about-card p {
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .about-cta {
+            padding: 30px;
+            background: #f1ebe4;
+            border-radius: 18px;
+            margin: 35px 0;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        @media(max-width:750px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a class="brand" href="index.html">DreamDecor</a>
+        <div class="navlinks">
+            <a href="index.html">Home</a>
+            <a href="explore.html">Explore</a>
+            <a href="before-after.html">Before / After</a>
+            <a href="contact-us.html">Contact Us</a>
+            <a href="profile.html">Profile</a>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <section class="about-hero">
+            <span class="eyebrow">A little about us</span>
+            <h1>Beautiful spaces begin with your ideas.</h1>
+            <p>
+                Welcome to DreamDecor, your destination for interior design
+                inspiration. We help you explore styles, discover creative
+                possibilities, and plan spaces that reflect your personality,
+                comfort, and everyday needs.
+            </p>
+            <div class="actions">
+                <a class="btn" href="explore.html">Explore Designs</a>
+                <a class="btn alt" href="contact-us.html">Talk to Our Team</a>
+            </div>
+        </section>
+
+        <section class="about-grid">
+            <article class="about-card">
+                <h2>Our Mission</h2>
+                <p>
+                    To make interior design inspiration easier to explore and
+                    help people make thoughtful decisions about their spaces.
+                </p>
+            </article>
+
+            <article class="about-card">
+                <h2>Our Vision</h2>
+                <p>
+                    To help every person imagine a space that feels welcoming,
+                    functional, personal, and beautiful.
+                </p>
+            </article>
+
+            <article class="about-card">
+                <h2>What We Offer</h2>
+                <p>
+                    Design galleries, before-and-after inspiration, room
+                    previews, and a convenient way to submit design requests.
+                </p>
+            </article>
+        </section>
+
+        <section class="about-cta">
+            <h2>Every room has a story.</h2>
+            <p>
+                Find inspiration for your living room, bedroom, kitchen,
+                balcony, workspace, and more. When you're ready, submit a
+                booking request to tell us about your project.
+            </p>
+            <div class="actions">
+                <a class="btn" href="explore.html">Find Your Style</a>
+                <a class="btn alt" href="booking.html">Book a Design</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-brand">DreamDecor</div>
+                <p>Interior inspiration for spaces that feel like home.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="explore.html">Design Gallery</a></li>
+                    <li><a href="before-after.html">Before &amp; After</a></li>
+                    <li><a href="ai.html">AI Preview</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Help</h3>
+                <ul class="footer-links">
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="faqs.html">FAQs</a></li>
+                    <li><a href="booking.html">Book a Design</a></li>
+                    <li><a href="profile.html">My Profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <span class="year"></span> DreamDecor. All rights reserved.</p>
+            <a href="contact-us.html">Customer Help</a>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll(".year").forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+
+</html>
