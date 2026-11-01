@@ -1,6 +1,6 @@
 # DreamDecor — Interior Design Portfolio Project
 
-Stack: HTML, CSS, Node.js + Express.
+Stack: HTML, CSS, Javascript, Node.js + Express, MySQL(XAMPP).
 
 This is a resume-ready academic/demo implementation based on the supplied UI/UX journal. The journal describes categorized design browsing, design details, conceptual payment, admin designer allocation, and an AI room-preview feature.
 
